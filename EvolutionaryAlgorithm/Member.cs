@@ -12,5 +12,10 @@
             Attribute = type;
             Fitness = fitness;
         }
+
+        public Member(double fitness)
+        {
+            Fitness = fitness;
+        }
     }
 }

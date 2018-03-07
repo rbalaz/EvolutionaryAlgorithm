@@ -126,9 +126,10 @@ namespace EvolutionaryAlgorithm
         // This is used before every selection cycle
         private void ShufflePopulation(List<Member> currentPopulation)
         {
+            Random random = new Random();
+
             for (int i = 0; i < currentPopulation.Count; i++)
             {
-                Random random = new Random();
                 int switcheroo = random.Next(0, 99);
                 if (switcheroo != i)
                 {
