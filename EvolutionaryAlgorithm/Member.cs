@@ -17,5 +17,18 @@
         {
             Fitness = fitness;
         }
+
+        public static Member CloneMember(Member member)
+        {
+            return new Member(member.Fitness);
+        }
+
+        public static bool CompareMembers(Member first, Member second)
+        {
+            if (first.Fitness == second.Fitness)
+                return true;
+            else
+                return false;
+        }
     }
 }

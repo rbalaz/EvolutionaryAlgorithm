@@ -7,7 +7,7 @@ namespace EvolutionaryAlgorithm
     {
         static void Main(string[] args)
         {
-            Experiment2();
+            Experiment3();
         }
 
         static void Experiment()
@@ -155,6 +155,64 @@ namespace EvolutionaryAlgorithm
             }
             QTournament tournamnet = new QTournament(q, initialPopulation, choice, parameters);
             tournamnet.Experiment(intSelectionCycles, intGenerations);
+        }
+
+        static void Experiment3()
+        {
+            bool wrongInput = true;
+            int intSelectionCycles = 0;
+            int intGenerations = 0;
+
+            // Simple dialogue to prompt user to enter desired amounts of selection cycles 
+            // and generations to be executed and produced by the algorithm
+            while (wrongInput)
+            {
+                Console.WriteLine("Set the number of selection cycles to be executed:");
+                string selectionCycles = Console.ReadLine();
+                Console.WriteLine("Set the number of generations to be evolved in every selection cycle:");
+                string generations = Console.ReadLine();
+
+                if (int.TryParse(selectionCycles, out intSelectionCycles) &&
+                    int.TryParse(generations, out intGenerations))
+                {
+                    if (intSelectionCycles > 0 && intGenerations > 0)
+                        wrongInput = false;
+                    else
+                        Console.WriteLine("Input was incorrect. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Input was incorrect. Try again.");
+                }
+            }
+
+            wrongInput = true;
+            while (wrongInput)
+            {
+                Console.WriteLine("Set the threshold number cutting the population: ");
+                string thresholdString = Console.ReadLine();
+                Console.WriteLine("Choose selection method for the uncut part of population: ");
+                Console.WriteLine("1 - with replacement");
+                Console.WriteLine("2 - wihout replacement");
+                Console.Write("Your choice: ");
+                string replacementString = Console.ReadLine();
+                double threshold = -1;
+                int replacement = -1;
+                if (double.TryParse(thresholdString, out threshold) &&
+                    int.TryParse(replacementString, out replacement))
+                {
+                    if (replacement > 0 && replacement < 3)
+                    {
+                        List<Member> initialPopulation = Initializer.InitializeNonLinearPopulation(100);
+                        Cut cut = new Cut(initialPopulation);
+                        cut.Experiment(intSelectionCycles, intGenerations, threshold,
+                            replacement == 1 ? true : false);
+                        wrongInput = false;
+                    }
+                    else
+                        Console.WriteLine("Input was incorrect. Try again.");
+                }
+            }
         }
     }
 }

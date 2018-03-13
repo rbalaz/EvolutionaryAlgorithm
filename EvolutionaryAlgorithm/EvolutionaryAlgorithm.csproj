@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cut.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Program.cs" />

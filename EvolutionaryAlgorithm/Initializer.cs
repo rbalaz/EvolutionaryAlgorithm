@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EvolutionaryAlgorithm
 {
@@ -42,6 +43,20 @@ namespace EvolutionaryAlgorithm
                 population.Add(member);
             }
             population.Add(new Member(maxFitness));
+
+            return population;
+        }
+
+        public static List<Member> InitializeNonLinearPopulation(int count)
+        {
+            // fi(ai) = sqrt(i)
+            List<Member> population = new List<Member>();
+
+            for (int i = 0; i < count; i++)
+            {
+                Member member = new Member(Math.Sqrt(i + 1));
+                population.Add(member);
+            }
 
             return population;
         }
